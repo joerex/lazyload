@@ -17,6 +17,7 @@
         data_srcset: "original-set",
         class_loading: "loading",
         class_loaded: "loaded",
+        class_initial: "initial",
         skip_invisible: true,
         callback_load: null,
         callback_error: null,
@@ -42,7 +43,7 @@
     function LazyLoad(instanceSettings) {
         this._settings = this._mergeObjects(_defaultSettings, instanceSettings);
         this._queryOriginNode = this._settings.container === window ? document : this._settings.container;
-
+        this._isFirstLoop = true;
         this._previousLoopTime = 0;
         this._loopTimeout = null;
         this._boundHandleScroll = this.handleScroll.bind(this);
@@ -232,6 +233,11 @@
                     /* Marking the element as processed. */
                     processedIndexes.push(i);
                     element.wasProcessed = true;
+
+                    /* Adding the initial class... */
+                    if (this._isFirstLoop) {
+                        element.classList.add(settings.class_initial);
+                    }
                 }
             }
             /* Removing processed elements from this._elements. */
@@ -245,6 +251,10 @@
             /* Stop listening to scroll event when 0 elements remains */
             if (elementsLength === 0) {
                 this._stopScrollHandler();
+            }
+            /* Sets isFirstLoop to false */
+            if (this._isFirstLoop) {
+                this._isFirstLoop = false;
             }
         },
 

@@ -171,6 +171,7 @@ Here's the list of the options.
 | `class_loading` | The class applied to the elements (`img` or `iframe`) while the loading is in progress | `"loading"` |
 | `class_loaded` | The class applied to the elements (`img` or `iframe`) when the loading is complete | `"loaded"` |
 | `class_error` | The class applied to the elements (`img` or `iframe`) when the element causes an error | `"error"` |
+| `class_initial` | The class applied to the elements (`img` or `iframe`) detected inside the viewport during the initial loop (at page landing) | `"initial"` |
 | `skip_invisible` | Specifies whether the script has to consider invisible images or not | `true` |
 | `callback_load` | A function to be called when an element (`img` or `iframe`) was loaded. | `null` |
 | `callback_error` | A function to be called when an element (`img` or `iframe`) triggers an error. | `null` |
